@@ -17,3 +17,10 @@ https://github.com/user-attachments/assets/b3e283d5-52da-4301-8df8-e3f261b20ec2
 
 
 Once uploaded, you'll want to select both reads, and "Auto Build List" to create a file containing both forward and reverse reads.
+
+
+
+https://github.com/user-attachments/assets/b6f93635-f6af-44eb-be67-9f5b5005921c
+
+## Quality Assessment and Quality Control
+Now that your reads are in Galaxy, you can use the FASTQC tool to investigate the overall quality of your sequencing reads.

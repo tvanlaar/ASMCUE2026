@@ -10,4 +10,10 @@ Welcome to the Genome Assembly and Annotation workshop! I hope you find this mat
 ## Getting the reads into Galaxy
 Short-read, Illumina sequencing files should be demultiplexed (one set of files for each sample submitted) with paired-end files having R1 and R2 in the file name. If this is what you've got, you're ready to upload. 
 
+
+
+https://github.com/user-attachments/assets/b3e283d5-52da-4301-8df8-e3f261b20ec2
+
+
+
 Once uploaded, you'll want to select both reads, and "Auto Build List" to create a file containing both forward and reverse reads.

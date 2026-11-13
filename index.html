@@ -1,105 +1,586 @@
-<nav id="contents" aria-label="Table of contents">
-  <h2>Workshop Workflow</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <ol>
-    <li><a href="#upload">Getting the Reads into Galaxy</a></li>
-    <li><a href="#quality-control">Quality Assessment and Quality Control</a></li>
-    <li><a href="#fastp">Read Trimming with fastp</a></li>
-    <li><a href="#assembly">Genome Assembly with SPAdes</a></li>
-    <li><a href="#filtering">Filtering Short Contigs</a></li>
-    <li><a href="#quast">Assembly Assessment with QUAST</a></li>
-    <li><a href="#checkm2">Genome Quality Assessment with CheckM2</a></li>
-    <li><a href="#barrnap">16S rRNA Identification with Barrnap</a></li>
-    <li><a href="#prokka">Genome Annotation with Prokka</a></li>
-  </ol>
-</nav>
+  <title>ASMCUE Galaxy Workshop</title>
 
-<section id="upload">
-  <h2>Getting the Reads into Galaxy</h2>
+  <style>
+    :root {
+      --blue: #1f4e79;
+      --light-blue: #eaf3f8;
+      --border: #d8e0e6;
+      --text: #24313a;
+      --muted: #5e6b73;
+      --background: #f7f9fb;
+      --white: #ffffff;
+    }
 
-  <p>
-    Short-read Illumina sequencing files should be demultiplexed, with one set
-    of files for each sample. Paired-end files should be labeled with
-    <code>R1</code> and <code>R2</code> in their filenames. If your files are
-    organized this way, they are ready to upload.
-  </p>
+    html {
+      scroll-behavior: smooth;
+    }
 
-  <video controls width="800" preload="metadata" playsinline>
-  <source src="videos/UploadToGalaxy.mp4" type="video/mp4">
-</video>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      background: var(--background);
+    }
 
-  <p>
-    Once the reads are uploaded, select both files and choose
-    <strong>Auto Build List</strong> to create a paired collection containing
-    the forward and reverse reads.
-  </p>
+    header {
+      padding: 3rem 1.5rem;
+      text-align: center;
+      color: white;
+      background: var(--blue);
+    }
 
- <video controls width="800" preload="metadata" playsinline>
-  <source src="videos/AutoBuildList.mp4" type="video/mp4">
-</video>
-</section>
+    header h1 {
+      margin: 0 0 0.5rem;
+      font-size: 2.4rem;
+    }
 
-<section id="quality-control">
-  <h2>Quality Assessment and Quality Control</h2>
+    header p {
+      margin: 0;
+      font-size: 1.15rem;
+    }
 
-  <p>
-    Now that the reads are in Galaxy, use FastQC to investigate the overall
-    quality of the sequencing reads.
-    </p>
-  
-<video controls width="800" preload="metadata" playsinline>
-  <source src="videos/DoingFastQC.mp4" type="video/mp4">
-</video>
+    main {
+      width: min(100% - 2rem, 1000px);
+      margin: 2rem auto;
+    }
 
-  <p>We can examine the FastQC results either by downloading the file to the computer or within the Galaxy interface.</p>
+    nav,
+    .step {
+      margin-bottom: 2rem;
+      padding: 1.5rem;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
 
-<video controls width="800" preload="metadata" playsinline>
-  <source src="videos/ExaminingFastQCResults.mp4" type="video/mp4">
-</video>
-  
-<p>Info on how to interpret</p>
-  
-</section>
+    nav {
+      border-left: 5px solid var(--blue);
+    }
 
-<section id="fastp">
-  <h2>Read Trimming with fastp</h2></h2>
+    nav h2 {
+      margin-top: 0;
+    }
 
-  <p>
-    We can use fastp to preprocess the reads. Fastp can remove any areas with lots of Ns (representing poor sequencing quality), reads that are too short, adapter and primer regions, etc.
-  </p>
+    nav ol {
+      margin-bottom: 0;
+      padding-left: 1.5rem;
+    }
 
-  <video controls width="800" preload="metadata" playsinline>
-  <source src="videos/fastp.mp4" type="video/mp4">
-</video>
+    nav li {
+      margin: 0.4rem 0;
+    }
 
-  <p>
-    Once the reads have been trimmed, you will have the output reads and results files.
-  </p>
+    a {
+      color: var(--blue);
+      font-weight: 600;
+    }
 
- <video controls width="800" preload="metadata" playsinline>
-  <source src="videos/fastpResults.mp4" type="video/mp4">
-</video>
+    h2 {
+      margin-top: 0;
+      color: var(--blue);
+      border-bottom: 2px solid var(--light-blue);
+      padding-bottom: 0.4rem;
+    }
 
-   <p>
-    The results file is informative because it contains all the statistics of the number of reads, percent passing, and GC content that will be useful when writing your Methods section. After this, you can run FastQC again, this time on the trimmed reads.
-  </p>
+    h3 {
+      margin-top: 1.8rem;
+      color: var(--blue);
+    }
 
-   <video controls width="800" preload="metadata" playsinline>
-  <source src="videos/fastpFastQC.mp4" type="video/mp4">
-</video>
-  
-</section>
+    .purpose {
+      padding: 0.9rem 1rem;
+      background: var(--light-blue);
+      border-left: 4px solid var(--blue);
+      border-radius: 4px;
+    }
 
-<section id="assembly">
-  <h2>Genome Assembly with SPAdes</h2></h2>
+    code {
+      padding: 0.1rem 0.3rem;
+      background: #eef1f3;
+      border-radius: 3px;
+      font-family: monospace;
+    }
 
-  <p>
-    You will be using SPAdes to assemble your reads. You should make sure to select your trimmed as the input for SPAdes so only the high quality reads are being assembled.
-  </p>
+    video {
+      display: block;
+      width: 100%;
+      max-width: 800px;
+      height: auto;
+      margin: 1rem 0 1.5rem;
+      border-radius: 6px;
+      background: #000000;
+    }
 
-  <video controls width="800" preload="metadata" playsinline>
-  <source src="videos/SPAdes.mp4" type="video/mp4">
-</video>
+    ul,
+    ol {
+      padding-left: 1.5rem;
+    }
 
-  
-</section>
+    li {
+      margin-bottom: 0.4rem;
+    }
+
+    .back-to-contents {
+      margin-top: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .placeholder {
+      padding: 1rem;
+      color: var(--muted);
+      background: #f1f3f5;
+      border: 1px dashed var(--border);
+      border-radius: 5px;
+    }
+
+    footer {
+      padding: 2rem 1rem;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.9rem;
+      }
+
+      main {
+        width: min(100% - 1rem, 1000px);
+        margin: 1rem auto;
+      }
+
+      nav,
+      .step {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>Bringing Genomics into the Classroom</h1>
+    <p>A hands-on Galaxy workshop for bacterial genome assembly and annotation</p>
+  </header>
+
+  <main>
+
+    <nav id="contents" aria-label="Table of contents">
+      <h2>Workshop Workflow</h2>
+
+      <ol>
+        <li><a href="#upload">Getting the Reads into Galaxy</a></li>
+        <li><a href="#quality-control">Quality Assessment and Quality Control</a></li>
+        <li><a href="#fastp">Read Trimming with fastp</a></li>
+        <li><a href="#assembly">Genome Assembly with SPAdes</a></li>
+        <li><a href="#filtering">Filtering Short Contigs</a></li>
+        <li><a href="#quast">Assembly Assessment with QUAST</a></li>
+        <li><a href="#checkm2">Genome Quality Assessment with CheckM2</a></li>
+        <li><a href="#barrnap">16S rRNA Identification with Barrnap</a></li>
+        <li><a href="#prokka">Genome Annotation with Prokka</a></li>
+      </ol>
+    </nav>
+
+    <section id="upload" class="step">
+      <h2>1. Getting the Reads into Galaxy</h2>
+
+      <p class="purpose">
+        <strong>Purpose:</strong> Upload paired-end Illumina reads and organize
+        them into a paired collection for downstream analysis.
+      </p>
+
+      <p>
+        Short-read Illumina sequencing files should be demultiplexed, with one
+        set of files for each sample. Paired-end files should be labeled with
+        <code>R1</code> and <code>R2</code> in their filenames. If your files are
+        organized this way, they are ready to upload.
+      </p>
+
+      <video controls preload="metadata" playsinline>
+        <source src="videos/UploadToGalaxy.mp4" type="video/mp4">
+        Your browser does not support embedded video.
+      </video>
+
+      <p>
+        Once the reads are uploaded, select both files and choose
+        <strong>Auto Build List</strong> to create a paired collection
+        containing the forward and reverse reads.
+      </p>
+
+      <video controls preload="metadata" playsinline>
+        <source src="videos/AutoBuildList.mp4" type="video/mp4">
+        Your browser does not support embedded video.
+      </video>
+
+      <h3>What to check</h3>
+
+      <ul>
+        <li>Confirm that the forward and reverse reads belong to the same sample</li>
+        <li>Confirm that the files are paired as R1 and R2</li>
+        <li>Use the paired collection for tools that require paired-end reads</li>
+      </ul>
+
+      <p class="back-to-contents">
+        <a href="#contents">Back to contents</a>
+      </p>
+    </section>
+
+    <section id="quality-control" class="step">
+      <h2>2. Quality Assessment and Quality Control</h2>
+
+      <p class="purpose">
+        <strong>Purpose:</strong> Assess whether the sequencing reads are
+        suitable for downstream analysis.
+      </p>
+
+      <p>
+        Now that the reads are in Galaxy, use FastQC to investigate the overall
+        quality of the sequencing reads.
+      </p>
+
+      <video controls preload="metadata" playsinline>
+        <source src="videos/DoingFastQC.mp4" type="video/mp4">
+        Your browser does not support embedded video.
+      </video>
+
+      <p>
+        You can examine the FastQC results by downloading the report or viewing
+        it directly within Galaxy.
+      </p>
+
+      <video controls preload="metadata" playsinline>
+        <source src="videos/ExaminingFastQCResults.mp4" type="video/mp4">
+        Your browser does not support embedded video.
+      </video>
+
+      <h3>What to look for in the FastQC report</h3>
+
+      <ul>
+        <li>Per-base sequence quality</li>
+        <li>Adapter content</li>
+        <li>Per-base <code>N</code> content</li>
+        <li>Warnings or failures that may require investigation</li>
+      </ul>
+
+      <p>
+        FastQC is a screening tool. A warning or failure does not automatically
+        mean that the sequencing data are unusable. The report identifies
+        patterns that should be evaluated in the context of the experiment and
+        library preparation.
+      </p>
+
+      <p class="back-to-contents">
+        <a href="#contents">Back to contents</a>
+      </p>
+    </section>
+
+    <section id="fastp" class="step">
+      <h2>3. Read Trimming with fastp</h2>
+
+      <p class="purpose">
+        <strong>Purpose:</strong> Remove or trim problematic portions of the
+        reads before genome assembly.
+      </p>
+
+      <p>
+        We can use fastp to preprocess the reads before assembly. Depending on
+        the settings, fastp can remove adapter sequences, trim low-quality
+        bases, filter reads containing too many ambiguous bases
+        (<code>N</code>s), and discard reads that are too short. It also
+        produces a report summarizing the changes made to the read set.
+      </p>
+
+      <video controls preload="metadata" playsinline>
+        <source src="videos/fastp.mp4" type="video/mp4">
+        Your browser does not support embedded video.
+      </video>
+
+      <p>
+        Once the reads have been trimmed, you will have cleaned read files and
+        fastp results files.
+      </p>
+
+      <video controls preload="metadata" playsinline>
+        <source src="videos/fastpResults.mp4" type="video/mp4">
+        Your browser does not support embedded video.
+      </video>
+
+      <h3>What to look for in the fastp report</h3>
+
+      <ul>
+        <li>The number of input reads</li>
+        <li>The number and percentage of reads that passed filtering</li>
+        <li>The number of bases retained</li>
+        <li>Changes in read length and GC content</li>
+        <li>Adapter and quality-trimming statistics</li>
+      </ul>
+
+      <p>
+        The fastp report can provide useful information for documenting the
+        read-processing methods and results.
+      </p>
+
+      <p>
+        You can run FastQC again on the trimmed reads as an additional quality
+        check. If the original reads were already high quality, the second
+        FastQC report may look very similar; that result is still informative.
+      </p>
+
+      <video controls preload="metadata" playsinline>
+        <source src="videos/fastpFastQC.mp4" type="video/mp4">
+        Your browser does not support embedded video.
+      </video>
+
+      <p class="back-to-contents">
+        <a href="#contents">Back to contents</a>
+      </p>
+    </section>
+
+    <section id="assembly" class="step">
+      <h2>4. Genome Assembly with SPAdes</h2>
+
+      <p class="purpose">
+        <strong>Purpose:</strong> Assemble the cleaned sequencing reads into
+        longer genomic sequences called contigs.
+      </p>
+
+      <p>
+        Use SPAdes to assemble the sequencing reads. Select the trimmed paired
+        reads as the input so that only the processed reads are used for the
+        assembly.
+      </p>
+
+      <video controls preload="metadata" playsinline>
+        <source src="videos/SPAdes.mp4" type="video/mp4">
+        Your browser does not support embedded video.
+      </video>
+
+      <h3>What SPAdes produces</h3>
+
+      <ul>
+        <li>A FASTA file containing assembled contigs</li>
+        <li>Assembly statistics and other output files</li>
+        <li>Potentially, a scaffold file in addition to the contig file</li>
+      </ul>
+
+      <p>
+        A contig is a continuous assembled DNA sequence. A scaffold is made by
+        linking contigs using paired-read information and may contain gaps
+        represented by <code>N</code>s.
+      </p>
+
+      <p class="back-to-contents">
+        <a href="#contents">Back to contents</a>
+      </p>
+    </section>
+
+    <section id="filtering" class="step">
+      <h2>5. Filtering Short Contigs</h2>
+
+      <p class="purpose">
+        <strong>Purpose:</strong> Remove very short sequences that are more
+        likely to represent assembly artifacts or low-confidence fragments.
+      </p>
+
+      <p>
+        Use the FASTA filtering tool to retain contigs at or above the selected
+        length threshold. For this analysis, retain contigs that are at least
+        500 bp long.
+      </p>
+
+      <p>
+        This filtering step creates a new FASTA file; it does not alter the
+        original SPAdes assembly. Keep the original assembly available for
+        comparison and documentation.
+      </p>
+
+      <h3>Important note</h3>
+
+      <p>
+        A 500-bp cutoff is a quality-filtering choice, not a universal biological
+        requirement. Short contigs can sometimes contain real biological
+        features, so the cutoff and its effects should be documented for
+        publication.
+      </p>
+
+      <div class="placeholder">
+        Add the filtering video and Galaxy instructions here.
+      </div>
+
+      <p class="back-to-contents">
+        <a href="#contents">Back to contents</a>
+      </p>
+    </section>
+
+    <section id="quast" class="step">
+      <h2>6. Assembly Assessment with QUAST</h2>
+
+      <p class="purpose">
+        <strong>Purpose:</strong> Evaluate the structure and continuity of the
+        genome assembly.
+      </p>
+
+      <p>
+        Use QUAST to calculate assembly statistics such as the number of
+        contigs, total assembly length, GC content, longest contig, and N50.
+      </p>
+
+      <p>
+        The minimum contig-length setting in QUAST affects which contigs are
+        included in the statistics. It does not physically remove contigs from
+        the FASTA file. The actual filtering was performed in the previous
+        step.
+      </p>
+
+      <h3>What to look for</h3>
+
+      <ul>
+        <li>Total assembly length</li>
+        <li>Number of contigs</li>
+        <li>Longest contig</li>
+        <li>N50</li>
+        <li>GC content</li>
+      </ul>
+
+      <div class="placeholder">
+        Add the QUAST video and Galaxy instructions here.
+      </div>
+
+      <p class="back-to-contents">
+        <a href="#contents">Back to contents</a>
+      </p>
+    </section>
+
+    <section id="checkm2" class="step">
+      <h2>7. Genome Quality Assessment with CheckM2</h2>
+
+      <p class="purpose">
+        <strong>Purpose:</strong> Estimate the completeness and contamination of
+        the assembled genome.
+      </p>
+
+      <p>
+        Use CheckM2 to evaluate the quality of the assembled genome. The main
+        results to examine are the estimated completeness and contamination.
+      </p>
+
+      <h3>What to look for</h3>
+
+      <ul>
+        <li>Estimated genome completeness</li>
+        <li>Estimated contamination</li>
+        <li>Any warnings or quality concerns</li>
+      </ul>
+
+      <div class="placeholder">
+        Add the CheckM2 video and Galaxy instructions here.
+      </div>
+
+      <p class="back-to-contents">
+        <a href="#contents">Back to contents</a>
+      </p>
+    </section>
+
+    <section id="barrnap" class="step">
+      <h2>8. 16S rRNA Identification with Barrnap</h2>
+
+      <p class="purpose">
+        <strong>Purpose:</strong> Identify ribosomal RNA genes, including the
+        16S rRNA gene, in the assembled genome.
+      </p>
+
+      <p>
+        Use Barrnap with the assembled contigs as input. Barrnap identifies
+        ribosomal RNA features such as 5S, 16S, and 23S rRNA genes.
+      </p>
+
+      <p>
+        The output can be used to identify and extract the 16S rRNA sequence for
+        downstream identification or comparison.
+      </p>
+
+      <h3>What to look for</h3>
+
+      <ul>
+        <li>Features labeled <code>16S_rRNA</code></li>
+        <li>The number of 16S rRNA copies detected</li>
+        <li>The lengths and locations of the predicted rRNA genes</li>
+      </ul>
+
+      <div class="placeholder">
+        Add the Barrnap video and Galaxy instructions here.
+      </div>
+
+      <p class="back-to-contents">
+        <a href="#contents">Back to contents</a>
+      </p>
+    </section>
+
+    <section id="prokka" class="step">
+      <h2>9. Genome Annotation with Prokka</h2>
+
+      <p class="purpose">
+        <strong>Purpose:</strong> Identify and annotate protein-coding genes,
+        rRNA genes, tRNA genes, and other genomic features.
+      </p>
+
+      <p>
+        Use Prokka to annotate the filtered assembly. Prokka produces several
+        output files, including an annotated GenBank file, a GFF annotation
+        file, protein sequences, nucleotide sequences, and summary statistics.
+      </p>
+
+      <h3>Important Prokka settings</h3>
+
+      <p>
+        Leave the options to disable rRNA and tRNA searches unchecked. This
+        allows Prokka to run its standard rRNA and tRNA prediction steps.
+      </p>
+
+      <h3>Important Prokka outputs</h3>
+
+      <ul>
+        <li><code>.gbk</code> — annotated GenBank file</li>
+        <li><code>.gff</code> — master annotation file</li>
+        <li><code>.tsv</code> — annotation table</li>
+        <li><code>.faa</code> — predicted protein sequences</li>
+        <li><code>.ffn</code> — nucleotide sequences of predicted features</li>
+        <li><code>.txt</code> — annotation summary statistics</li>
+        <li><code>.log</code> — record of the settings and software information</li>
+      </ul>
+
+      <div class="placeholder">
+        Add the Prokka video and Galaxy instructions here.
+      </div>
+
+      <h3>Publication and reproducibility reminder</h3>
+
+      <p>
+        If you plan to publish the analysis, record the exact Galaxy tool
+        versions, software versions, parameters, databases, reference files,
+        and filtering thresholds used for every step.
+      </p>
+
+      <p class="back-to-contents">
+        <a href="#contents">Back to contents</a>
+      </p>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>ASMCUE 2026 Galaxy Workshop</p>
+  </footer>
+
+</body>
+</html>

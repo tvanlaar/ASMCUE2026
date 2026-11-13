@@ -559,34 +559,75 @@
     </section>
 
     <section id="checkm2" class="step">
-      <h2>7. Genome Quality Assessment with CheckM2</h2>
+  <h2>7. Genome Quality Assessment with CheckM2</h2>
 
-      <p class="purpose">
-        <strong>Purpose:</strong> Estimate the completeness and contamination of
-        the assembled genome.
-      </p>
+  <p class="purpose">
+    <strong>Purpose:</strong> Estimate the completeness and contamination of
+    the assembled genome.
+  </p>
 
-      <p>
-        Use CheckM2 to evaluate the quality of the assembled genome. The main
-        results to examine are the estimated completeness and contamination.
-      </p>
+  <p>
+    CheckM2 evaluates the quality of an assembled genome by estimating how
+    complete the genome is and whether it contains evidence of contamination.
+    Use the filtered contigs from the previous step as the input.
+  </p>
 
-      <h3>What to look for</h3>
+  <h3>Running CheckM2 in Galaxy</h3>
 
-      <ul>
-        <li>Estimated genome completeness</li>
-        <li>Estimated contamination</li>
-        <li>Any warnings or quality concerns</li>
-      </ul>
+  <div class="video-container">
+    <iframe
+      src="https://www.youtube.com/embed/CHECKM2_RUN_VIDEO_ID"
+      title="Running CheckM2 in Galaxy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
 
-      <div class="placeholder">
-        Add the CheckM2 video and Galaxy instructions here.
-      </div>
+  <h3>Interpreting the CheckM2 results</h3>
 
-      <p class="back-to-contents">
-        <a href="#contents">Back to contents</a>
-      </p>
-    </section>
+  <div class="video-container">
+    <iframe
+      src="https://www.youtube.com/embed/eZ8ovC_TM9A?si=iz7HuPaX0-nmplxg"
+      title="Interpreting CheckM2 results"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <h3>What to look for</h3>
+
+  <ul>
+    <li>
+      <strong>Completeness:</strong>
+      The estimated proportion of the expected genome that is present. Higher
+      completeness generally indicates that fewer expected genes are missing.
+    </li>
+
+    <li>
+      <strong>Contamination:</strong>
+      The estimated proportion of the assembly that may come from other
+      organisms or additional genomes. Lower contamination is preferable.
+    </li>
+
+    <li>
+      <strong>Overall quality:</strong>
+      Interpret completeness and contamination together rather than judging the
+      assembly from one value alone.
+    </li>
+  </ul>
+
+  <p>
+    CheckM2 provides estimates rather than absolute measurements. These results
+    should be considered alongside the assembly statistics from QUAST, the
+    sequencing quality results, and the biological context of the sample.
+  </p>
+
+  <p class="back-to-contents">
+    <a href="#contents">Back to contents</a>
+  </p>
+</section>
 
     <section id="barrnap" class="step">
       <h2>8. 16S rRNA Identification with Barrnap</h2>

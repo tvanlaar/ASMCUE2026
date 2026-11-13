@@ -629,40 +629,93 @@
   </p>
 </section>
 
-    <section id="barrnap" class="step">
-      <h2>8. 16S rRNA Identification with Barrnap</h2>
+   <section id="barrnap" class="step">
+  <h2>8. 16S rRNA Identification with Barrnap</h2>
 
-      <p class="purpose">
-        <strong>Purpose:</strong> Identify ribosomal RNA genes, including the
-        16S rRNA gene, in the assembled genome.
-      </p>
+  <p class="purpose">
+    <strong>Purpose:</strong> Identify the 16S rRNA gene and use its sequence
+    for a preliminary identification of the assembled bacterium.
+  </p>
 
-      <p>
-        Use Barrnap with the assembled contigs as input. Barrnap identifies
-        ribosomal RNA features such as 5S, 16S, and 23S rRNA genes.
-      </p>
+  <p>
+    Use Barrnap with the assembled contigs as input. Barrnap identifies
+    ribosomal RNA features, including 5S, 16S, and 23S rRNA genes.
+  </p>
 
-      <p>
-        The output can be used to identify and extract the 16S rRNA sequence for
-        downstream identification or comparison.
-      </p>
+  <h3>Running Barrnap in Galaxy</h3>
 
-      <h3>What to look for</h3>
+  <div class="video-container">
+    <iframe
+      src="https://www.youtube.com/embed/ofWA_7801k8?si=Sq2__bdvA_tbhyZ8"
+      title="Running Barrnap in Galaxy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
 
-      <ul>
-        <li>Features labeled <code>16S_rRNA</code></li>
-        <li>The number of 16S rRNA copies detected</li>
-        <li>The lengths and locations of the predicted rRNA genes</li>
-      </ul>
+  <h3>What to look for in the Barrnap results</h3>
 
-      <div class="placeholder">
-        Add the Barrnap video and Galaxy instructions here.
-      </div>
+  <ul>
+    <li>
+      Features labeled <code>16S_rRNA</code> or
+      <code>16S ribosomal RNA</code>
+    </li>
+    <li>The number of 16S rRNA copies detected</li>
+    <li>The lengths and locations of the predicted rRNA genes</li>
+  </ul>
 
-      <p class="back-to-contents">
-        <a href="#contents">Back to contents</a>
-      </p>
-    </section>
+  <p>
+    Extract the predicted 16S rRNA sequence as a FASTA file before beginning
+    the BLAST search.
+  </p>
+
+  <h3>Searching the 16S rRNA Sequence with BLAST</h3>
+
+  <div class="video-container">
+    <iframe
+      src="https://www.youtube.com/embed/SQmRmf4pPmI?si=Y4I82KNLtKr3RLKu"
+      title="Searching a 16S rRNA sequence with BLAST"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <h3>What to look for in the BLAST results</h3>
+
+  <ul>
+    <li>
+      <strong>Query coverage:</strong>
+      The percentage of the input 16S sequence included in the alignment
+    </li>
+    <li>
+      <strong>Percent identity:</strong>
+      The percentage of aligned bases that match the database sequence
+    </li>
+    <li>
+      <strong>E-value:</strong>
+      The likelihood that the alignment occurred by chance; smaller values
+      indicate more statistically significant matches
+    </li>
+    <li>
+      <strong>Organism names and accession numbers:</strong>
+      The identities of the closest database matches and the records used for
+      comparison
+    </li>
+  </ul>
+
+  <p>
+    A strong 16S match can provide a preliminary identification, but 16S rRNA
+    often cannot distinguish between very closely related bacterial species.
+    Interpret the result together with the genome assembly, annotation, and
+    other taxonomic evidence.
+  </p>
+
+  <p class="back-to-contents">
+    <a href="#contents">Back to contents</a>
+  </p>
+</section>
 
     <section id="prokka" class="step">
       <h2>9. Genome Annotation with Prokka</h2>

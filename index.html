@@ -195,6 +195,7 @@
       <h2>Workshop Workflow</h2>
 
       <ol>
+        <li><a href="#reproducibility">Reproducibility and Publication Notes</a></li>
         <li><a href="#upload">Getting the Reads into Galaxy</a></li>
         <li><a href="#quality-control">Quality Assessment and Quality Control</a></li>
         <li><a href="#fastp">Read Trimming with fastp</a></li>
@@ -206,7 +207,83 @@
         <li><a href="#prokka">Genome Annotation with Prokka</a></li>
       </ol>
     </nav>
+<section id="reproducibility" class="step">
+  <h2>Reproducibility and Publication Notes</h2>
 
+  <p class="purpose">
+    <strong>Why this matters:</strong> A reproducible analysis includes enough
+    information for another researcher to understand and repeat the workflow.
+  </p>
+
+  <p>
+    Galaxy histories help document an analysis by preserving the input files,
+    tool outputs, tool settings, and relationships among datasets. However, a
+    history is only useful for reproduction if the important details are
+    recorded and preserved.
+  </p>
+
+  <h3>Record these details</h3>
+
+  <ul>
+    <li>
+      <strong>Input data:</strong>
+      Record the sample name, sequencing files, read type, and source of the
+      data.
+    </li>
+
+    <li>
+      <strong>Galaxy information:</strong>
+      Record the Galaxy server, history name or ID, workflow name, and date of
+      analysis.
+    </li>
+
+    <li>
+      <strong>Tool versions:</strong>
+      Record the exact version of every tool used, including FastQC, fastp,
+      SPAdes, QUAST, CheckM2, Barrnap, Prokka, and BLAST.
+    </li>
+
+    <li>
+      <strong>Parameters:</strong>
+      Record important settings such as quality thresholds, minimum read
+      lengths, assembly options, organism or database selections, and
+      filtering cutoffs.
+    </li>
+
+    <li>
+      <strong>References and databases:</strong>
+      Record the reference genome, database, database version, or taxonomy
+      database used for each analysis.
+    </li>
+
+    <li>
+      <strong>Output files:</strong>
+      Preserve the important reports, assemblies, annotation files, extracted
+      sequences, and BLAST results.
+    </li>
+  </ul>
+
+  <h3>Before publishing</h3>
+
+  <p>
+    Review the complete Galaxy history and confirm that the files and settings
+    needed to understand the analysis are still available. Export or share the
+    history when appropriate, and include the relevant software versions,
+    parameters, filtering thresholds, and database information in the Methods
+    section.
+  </p>
+
+  <p class="purpose">
+    <strong>Workshop reminder:</strong> If you think you may publish your
+    analysis, record the exact tool versions and settings while you work rather
+    than trying to reconstruct them later.
+  </p>
+
+  <p class="back-to-contents">
+    <a href="#contents">Back to contents</a>
+  </p>
+</section>
+</section>
     <section id="upload" class="step">
       <h2>1. Getting the Reads into Galaxy</h2>
 
@@ -718,55 +795,133 @@
 </section>
 
     <section id="prokka" class="step">
-      <h2>9. Genome Annotation with Prokka</h2>
+  <h2>9. Genome Annotation with Prokka</h2>
 
-      <p class="purpose">
-        <strong>Purpose:</strong> Identify and annotate protein-coding genes,
-        rRNA genes, tRNA genes, and other genomic features.
-      </p>
+  <h3>Reproducibility Before You Begin</h3>
 
-      <p>
-        Use Prokka to annotate the filtered assembly. Prokka produces several
-        output files, including an annotated GenBank file, a GFF annotation
-        file, protein sequences, nucleotide sequences, and summary statistics.
-      </p>
+  <p class="purpose">
+    <strong>Important:</strong> If you may publish your analysis, record the
+    details of every tool run as you work.
+  </p>
 
-      <h3>Important Prokka settings</h3>
+  <p>
+    Galaxy histories are useful for reproducibility because they preserve the
+    inputs, outputs, tool settings, and relationships among datasets. For each
+    analysis step, record the Galaxy server, tool name and version, input
+    datasets, parameters, filtering thresholds, database or reference versions,
+    and relevant output files.
+  </p>
 
-      <p>
-        Leave the options to disable rRNA and tRNA searches unchecked. This
-        allows Prokka to run its standard rRNA and tRNA prediction steps.
-      </p>
+  <p>
+    At a minimum, save or share the Galaxy history and record the exact tool
+    versions and settings used. This information will be needed when writing
+    the Methods section or attempting to reproduce the analysis.
+  </p>
 
-      <h3>Important Prokka outputs</h3>
+  <p class="purpose">
+    <strong>Purpose:</strong> Identify and annotate protein-coding genes, rRNA
+    genes, tRNA genes, and other genomic features.
+  </p>
 
-      <ul>
-        <li><code>.gbk</code> — annotated GenBank file</li>
-        <li><code>.gff</code> — master annotation file</li>
-        <li><code>.tsv</code> — annotation table</li>
-        <li><code>.faa</code> — predicted protein sequences</li>
-        <li><code>.ffn</code> — nucleotide sequences of predicted features</li>
-        <li><code>.txt</code> — annotation summary statistics</li>
-        <li><code>.log</code> — record of the settings and software information</li>
-      </ul>
+  <p>
+    Prokka uses several software tools and reference databases to annotate a
+    bacterial genome. It produces multiple output files that describe the
+    predicted features and provide sequences and formats for downstream
+    analyses.
+  </p>
 
-      <div class="placeholder">
-        Add the Prokka video and Galaxy instructions here.
-      </div>
+  <h3>Running Prokka in Galaxy</h3>
 
-      <h3>Publication and reproducibility reminder</h3>
+  <div class="video-container">
+    <iframe
+      src="https://www.youtube.com/embed/PROKKA_RUN_VIDEO_ID"
+      title="Running Prokka in Galaxy"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
 
-      <p>
-        If you plan to publish the analysis, record the exact Galaxy tool
-        versions, software versions, parameters, databases, reference files,
-        and filtering thresholds used for every step.
-      </p>
+  <h3>Important Prokka settings</h3>
 
-      <p class="back-to-contents">
-        <a href="#contents">Back to contents</a>
-      </p>
-    </section>
+  <p>
+    Use the filtered assembly as the input for Prokka. Leave the options to
+    disable rRNA and tRNA searches unchecked. This allows Prokka to run its
+    standard rRNA and tRNA prediction steps.
+  </p>
 
+  <h3>Understanding the Prokka outputs</h3>
+
+  <div class="video-container">
+    <iframe
+      src="https://www.youtube.com/embed/PROKKA_RESULTS_VIDEO_ID"
+      title="Understanding Prokka output files"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <ul>
+    <li>
+      <strong><code>.gbk</code>:</strong>
+      An annotated GenBank-format file containing the assembled sequences and
+      predicted genomic features. This is useful for viewing the annotation and
+      preparing for downstream submission, although additional preparation may
+      be required for GenBank submission.
+    </li>
+
+    <li>
+      <strong><code>.gff</code>:</strong>
+      The main annotation file. It records the locations and descriptions of
+      predicted genes and other features on the contigs.
+    </li>
+
+    <li>
+      <strong><code>.tsv</code>:</strong>
+      A tab-separated annotation table containing information such as feature
+      type, location, gene name, product, and functional annotations.
+    </li>
+
+    <li>
+      <strong><code>.faa</code>:</strong>
+      FASTA sequences of the predicted proteins translated from protein-coding
+      genes.
+    </li>
+
+    <li>
+      <strong><code>.ffn</code>:</strong>
+      FASTA nucleotide sequences of predicted features, including protein-coding
+      genes, rRNA, tRNA, tmRNA, and other RNA features.
+    </li>
+
+    <li>
+      <strong><code>.txt</code>:</strong>
+      A summary of the annotation results, including the numbers of predicted
+      coding sequences, rRNAs, tRNAs, and other features.
+    </li>
+
+    <li>
+      <strong><code>.log</code>:</strong>
+      A record of the Prokka run, including software settings and information
+      useful for documenting the analysis.
+    </li>
+  </ul>
+
+  <h3>What to look for</h3>
+
+  <ul>
+    <li>How many protein-coding genes were predicted?</li>
+    <li>Were rRNA and tRNA features identified?</li>
+    <li>How many genes were assigned functional names?</li>
+    <li>How many features remain annotated as hypothetical proteins?</li>
+    <li>Which output files would be useful for future analyses or publication?</li>
+  </ul>
+
+  <p class="back-to-contents">
+    <a href="#contents">Back to contents</a>
+  </p>
+</section>
   </main>
 
   <footer>

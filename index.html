@@ -813,7 +813,7 @@
 
   <div class="video-container">
     <iframe
-      src="https://www.youtube.com/embed/PROKKA_RUN_VIDEO_ID"
+      src="https://www.youtube.com/embed/WDRfggk2xbU?si=ZP-BrIe36uWM_hpI"
       title="Running Prokka in Galaxy"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerpolicy="strict-origin-when-cross-origin"
@@ -833,7 +833,7 @@
 
   <div class="video-container">
     <iframe
-      src="https://www.youtube.com/embed/WDRfggk2xbU?si=ZP-BrIe36uWM_hpI"
+      src="https://www.youtube.com/embed/uD5FJUiqnBg?si=SeDW4IRViwE0PZ-i"
       title="Understanding Prokka output files"
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
       referrerpolicy="strict-origin-when-cross-origin"
@@ -889,13 +889,53 @@
 
   <h3>What to look for</h3>
 
-  <ul>
-    <li>How many protein-coding genes were predicted?</li>
-    <li>Were rRNA and tRNA features identified?</li>
-    <li>How many genes were assigned functional names?</li>
-    <li>How many features remain annotated as hypothetical proteins?</li>
-    <li>Which output files would be useful for future analyses or publication?</li>
-  </ul>
+<p>
+  Open the Prokka <code>.tsv</code> annotation table. This file contains one
+  row for each predicted feature and includes columns for feature type, gene
+  name, enzyme information, COG assignment, and predicted product.
+</p>
+
+<ul>
+  <li>
+    <strong>How many protein-coding genes were predicted?</strong>
+    Count the rows where the <code>ftype</code> column is
+    <code>CDS</code>.
+  </li>
+
+  <li>
+    <strong>Were rRNA and tRNA features identified?</strong>
+    Look for rows where the <code>ftype</code> column is
+    <code>rRNA</code> or <code>tRNA</code>.
+  </li>
+
+  <li>
+    <strong>How many genes were assigned functional names?</strong>
+    Among the <code>CDS</code> rows, count the entries in the
+    <code>product</code> column that have a specific predicted product rather
+    than being labeled <code>hypothetical protein</code>.
+  </li>
+
+  <li>
+    <strong>How many features remain annotated as hypothetical proteins?</strong>
+    Among the <code>CDS</code> rows, count the entries where the
+    <code>product</code> column says <code>hypothetical protein</code>.
+  </li>
+
+  <li>
+    <strong>Which output files would be useful for future analyses or
+    publication?</strong>
+    The <code>.gbk</code>, <code>.gff</code>, <code>.tsv</code>,
+    <code>.faa</code>, <code>.ffn</code>, <code>.txt</code>, and
+    <code>.log</code> files each provide different types of annotation or
+    documentation.
+  </li>
+</ul>
+
+<p>
+  A “hypothetical protein” is not necessarily a nonfunctional protein. It means
+  that Prokka predicted a protein-coding feature but could not assign it a
+  specific function using the databases and settings used for the analysis.
+</p>
 
   <p class="back-to-contents">
     <a href="#contents">Back to contents</a>

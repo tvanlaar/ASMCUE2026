@@ -196,6 +196,7 @@
 
       <ol>
         <li><a href="#reproducibility">Reproducibility and Publication Notes</a></li>
+        <li><a href="#getting-started">Getting Started</a></li>
         <li><a href="#upload">Getting the Reads into Galaxy</a></li>
         <li><a href="#quality-control">Quality Assessment and Quality Control</a></li>
         <li><a href="#fastp">Read Trimming with fastp</a></li>
@@ -283,9 +284,72 @@
     <a href="#contents">Back to contents</a>
   </p>
 </section>
+
+    <section id="getting-started" class="step">
+  <h2>Getting Started</h2>
+
+  <p>
+    Welcome to the Genome Assembly and Annotation workshop! This tutorial will
+    guide you through a bacterial genome assembly and annotation workflow in
+    Galaxy.
+  </p>
+
+  <p>
+    You may either use the prepared workshop history or work with your own
+    sequencing reads. The prepared history contains completed outputs that we
+    can examine while analyses are running.
+  </p>
+
+  <h3>Before we begin</h3>
+
+  <ol>
+    <li>
+      Create an account at
+      <a
+        href="https://usegalaxy.eu"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        usegalaxy.eu
+      </a>.
+    </li>
+
+    <li>
+      Open the
+      <a
+        href="https://usegalaxy.eu/u/tvanlaar/h/asmcue-2026"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ASMCUE 2026 workshop history
+      </a>.
+    </li>
+
+    <li>
+      In Galaxy, select <strong>Import History</strong> to copy the workshop
+      history into your own Galaxy account.
+    </li>
+  </ol>
+
+  <p>
+    If you are using your own sequencing reads, you can skip the prepared
+    history and jump directly to
+    <a href="#upload">Getting the Reads into Galaxy</a>.
+  </p>
+
+  <p>
+    If you are following the prepared workflow, begin with
+    <a href="#quality-control">Quality Assessment and Quality Control</a>.
+  </p>
+
+  <p class="back-to-contents">
+    <a href="#contents">Back to contents</a>
+  </p>
+</section>
+    
 </section>
     <section id="upload" class="step">
-      <h2>1. Getting the Reads into Galaxy</h2>
+      <h2>Getting the Reads into Galaxy</h2>
 
       <p class="purpose">
         <strong>Purpose:</strong> Upload paired-end Illumina reads and organize
@@ -339,7 +403,7 @@
     </section>
 
     <section id="quality-control" class="step">
-      <h2>2. Quality Assessment and Quality Control</h2>
+      <h2>Quality Assessment and Quality Control</h2>
 
       <p class="purpose">
         <strong>Purpose:</strong> Assess whether the sequencing reads are
@@ -396,7 +460,7 @@
     </section>
 
     <section id="fastp" class="step">
-      <h2>3. Read Trimming with fastp</h2>
+      <h2>Read Trimming with fastp</h2>
 
       <p class="purpose">
         <strong>Purpose:</strong> Remove or trim problematic portions of the
@@ -471,7 +535,7 @@
     </section>
 
     <section id="assembly" class="step">
-      <h2>4. Genome Assembly with SPAdes</h2>
+      <h2>Genome Assembly with SPAdes</h2>
 
       <p class="purpose">
         <strong>Purpose:</strong> Assemble the cleaned sequencing reads into
@@ -513,7 +577,7 @@
     </section>
 
     <section id="filtering" class="step">
-      <h2>5. Filtering Short Contigs</h2>
+      <h2>Filtering Short Contigs</h2>
 
       <p class="purpose">
         <strong>Purpose:</strong> Remove very short sequences that are more
@@ -557,7 +621,7 @@
     </section>
 
     <section id="quast" class="step">
-      <h2>6. Assembly Assessment with QUAST</h2>
+      <h2>Assembly Assessment with QUAST</h2>
 
       <p class="purpose">
         <strong>Purpose:</strong> Evaluate the structure and continuity of the
@@ -636,7 +700,7 @@
     </section>
 
     <section id="checkm2" class="step">
-  <h2>7. Genome Quality Assessment with CheckM2</h2>
+  <h2>Genome Quality Assessment with CheckM2</h2>
 
   <p class="purpose">
     <strong>Purpose:</strong> Estimate the completeness and contamination of
@@ -707,7 +771,7 @@
 </section>
 
    <section id="barrnap" class="step">
-  <h2>8. 16S rRNA Identification with Barrnap</h2>
+  <h2>16S rRNA Identification with Barrnap</h2>
 
   <p class="purpose">
     <strong>Purpose:</strong> Identify the 16S rRNA gene and use its sequence

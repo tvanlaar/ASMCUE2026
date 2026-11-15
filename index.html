@@ -5,6 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>ASMCUE Galaxy Workshop</title>
+
+<style>
+  .genome-tools {
+    margin-top: 2rem;
+  }
+
+  .genome-tools-intro {
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .genome-tool-group {
+    margin-top: 1.75rem;
+  }
+
+  .genome-tool-group h3 {
+    color: #1f4e79;
+    border-bottom: 2px solid #1f4e79;
+    padding-bottom: 0.35rem;
+  }
+
+  .genome-tool-card {
+    border: 1px solid #d8e0e6;
+    border-left: 5px solid #1f4e79;
+    padding: 1rem 1.15rem;
+    margin: 1rem 0;
+    background-color: #f8fafb;
+  }
+
+  .genome-tool-card h4 {
+    margin-top: 0;
+    margin-bottom: 0.35rem;
+    color: #1f4e79;
+  }
+
+  .genome-tool-card p {
+    margin: 0.45rem 0;
+  }
+
+  .genome-tool-card ul {
+    margin-top: 0.35rem;
+  }
+
+  .genome-tool-card a {
+    font-weight: bold;
+  }
+
+  .genome-caution {
+    border-top: 1px solid #c9d4dc;
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+  }
+
+  .genome-caution strong {
+    color: #8a4b08;
+  }
+</style>
   
 <style>
 .video-container {
@@ -206,6 +263,7 @@
         <li><a href="#checkm2">Genome Quality Assessment with CheckM2</a></li>
         <li><a href="#barrnap">16S rRNA Identification with Barrnap</a></li>
         <li><a href="#prokka">Genome Annotation with Prokka</a></li>
+        <li><a href="#genome-applications">What Can I Do With My Genome?</a></li>
       </ol>
     </nav>
 <section id="reproducibility" class="step">
@@ -1008,6 +1066,409 @@
 </section>
   </main>
 
+<section id="genome-applications" class="step genome-tools">
+  <h2>What Can I Do With My Genome?</h2>
+
+  <p class="genome-tools-intro">
+    Once you have assembled, assessed, and annotated a genome, you can use
+    additional tools to explore its taxonomy, antimicrobial-resistance genes,
+    virulence-associated genes, biosynthetic potential, mobile genetic elements,
+    and CRISPR-Cas systems.
+  </p>
+
+  <p>
+    Most of these tools accept an assembled genome in FASTA format. Some tools
+    can also use annotated GenBank files or predicted protein sequences from
+    Prokka.
+  </p>
+
+  <div class="genome-tool-group">
+    <h3>Taxonomy and genome identification</h3>
+
+    <div class="genome-tool-card">
+      <h4>
+        <a
+          href="https://tygs.dsmz.de/"
+          target="_blank"
+          rel="noopener noreferrer">
+          TYGS
+        </a>
+      </h4>
+
+      <p>
+        <strong>Type Strain Genome Server</strong>
+      </p>
+
+      <p>
+        TYGS uses genome-based methods to compare a bacterial genome with
+        genomes from recognized type strains. It can identify closely related
+        organisms, extract and compare 16S rRNA sequences, calculate digital
+        DNA-DNA hybridization estimates, and generate genome-based phylogenomic
+        trees.
+      </p>
+
+      <p>
+        <strong>Useful outputs:</strong>
+        closest type strains, digital DNA-DNA hybridization values, taxonomic
+        clusters, phylogenomic trees, and branch-support values.
+      </p>
+
+      <p>
+        <strong>Questions to ask:</strong>
+        Does the genome cluster with a known species? Are the closest type
+        strains consistent with the 16S BLAST result? Do the genome-wide results
+        provide stronger evidence than 16S alone?
+      </p>
+
+      <p>
+        <strong>Important caution:</strong>
+        TYGS results should be interpreted alongside genome quality,
+        completeness, contamination, and assembly fragmentation.
+      </p>
+    </div>
+  </div>
+
+  <div class="genome-tool-group">
+    <h3>Antimicrobial resistance</h3>
+
+    <div class="genome-tool-card">
+      <h4>
+        <a
+          href="https://card.mcmaster.ca/analyze/rgi"
+          target="_blank"
+          rel="noopener noreferrer">
+          CARD and RGI
+        </a>
+      </h4>
+
+      <p>
+        The Comprehensive Antibiotic Resistance Database and Resistance Gene
+        Identifier can be used to predict antimicrobial-resistance determinants
+        from nucleotide or protein sequences.
+      </p>
+
+      <p>
+        RGI compares sequence data with curated CARD resistance models. Depending
+        on the match, it may identify a resistance gene, resistance mechanism,
+        antimicrobial class, or relevant mutation.
+      </p>
+
+      <p>
+        <strong>Useful outputs:</strong>
+        detected resistance determinants, resistance mechanisms, drug classes,
+        gene names, percent identity, alignment coverage, and hit category such
+        as Perfect, Strict, or Loose.
+      </p>
+
+      <p>
+        <strong>Questions to ask:</strong>
+        What resistance mechanism was predicted? Which antimicrobial class is
+        associated with it? Is the match full-length and high-confidence?
+      </p>
+
+      <p>
+        <strong>Important caution:</strong>
+        Detection of a resistance gene does not prove that the gene is expressed
+        or that the organism will show a resistant phenotype. Confirm important
+        findings with phenotypic testing and appropriate controls.
+      </p>
+    </div>
+
+    <div class="genome-tool-card">
+      <h4>
+        <a
+          href="https://cge.food.dtu.dk/services/ResFinder/"
+          target="_blank"
+          rel="noopener noreferrer">
+          ResFinder
+        </a>
+      </h4>
+
+      <p>
+        ResFinder searches for acquired antimicrobial-resistance genes using
+        curated reference sequences. It is useful for a complementary
+        comparison with CARD/RGI.
+      </p>
+
+      <p>
+        <strong>Useful outputs:</strong>
+        predicted resistance gene, antimicrobial category, percent identity,
+        alignment length, and sequence coverage.
+      </p>
+
+      <p>
+        <strong>Questions to ask:</strong>
+        Does ResFinder identify the same resistance gene as RGI? Are the
+        percent identity and coverage high enough to support the prediction?
+      </p>
+
+      <p>
+        <strong>Important caution:</strong>
+        Differences between RGI and ResFinder may reflect different databases,
+        models, thresholds, and update dates. Record the database and tool
+        version for any result you plan to report.
+      </p>
+    </div>
+  </div>
+
+  <div class="genome-tool-group">
+    <h3>Pathogenic potential and virulence-associated genes</h3>
+
+    <div class="genome-tool-card">
+      <h4>
+        <a
+          href="https://genepi.food.dtu.dk/pathogenfinder"
+          target="_blank"
+          rel="noopener noreferrer">
+          PathogenFinder 2
+        </a>
+      </h4>
+
+      <p>
+        PathogenFinder uses sequence-based evidence to estimate whether a genome
+        contains protein families associated with pathogenic organisms. It
+        produces a computational estimate of pathogenic potential.
+      </p>
+
+      <p>
+        <strong>Useful outputs:</strong>
+        predicted pathogenic or non-pathogenic classification, probability or
+        confidence information, and protein matches contributing to the result.
+      </p>
+
+      <p>
+        <strong>Question to ask:</strong>
+        Which sequence features contributed to the prediction, and how strong
+        is the confidence?
+      </p>
+
+      <p>
+        <strong>Important caution:</strong>
+        A predicted pathogenic potential is not equivalent to demonstrated
+        pathogenicity, clinical risk, or the ability to cause disease in a
+        particular host.
+      </p>
+    </div>
+
+    <div class="genome-tool-card">
+      <h4>
+        <a
+          href="https://cge.food.dtu.dk/services/VirulenceFinder/"
+          target="_blank"
+          rel="noopener noreferrer">
+          VirulenceFinder
+        </a>
+      </h4>
+
+      <p>
+        VirulenceFinder searches for known virulence-associated genes using
+        curated databases. It can help identify genes associated with processes
+        such as adhesion, invasion, toxin production, secretion, or host
+        interactions.
+      </p>
+
+      <p>
+        <strong>Useful outputs:</strong>
+        predicted virulence gene, associated organism or database entry,
+        percent identity, and sequence coverage.
+      </p>
+
+      <p>
+        <strong>Question to ask:</strong>
+        Is the gene present with strong sequence identity and broad coverage,
+        and is the surrounding genomic context biologically plausible?
+      </p>
+
+      <p>
+        <strong>Important caution:</strong>
+        Presence of a virulence-associated gene does not prove that it is
+        expressed or functional.
+      </p>
+    </div>
+  </div>
+
+  <div class="genome-tool-group">
+    <h3>Secondary metabolism and natural-product discovery</h3>
+
+    <div class="genome-tool-card">
+      <h4>
+        <a
+          href="https://antismash.secondarymetabolites.org/"
+          target="_blank"
+          rel="noopener noreferrer">
+          antiSMASH
+        </a>
+      </h4>
+
+      <p>
+        antiSMASH searches for biosynthetic gene clusters, which are groups of
+        nearby genes that may work together to produce secondary metabolites.
+        These products can include antibiotics, siderophores, pigments,
+        toxins, and other natural products.
+      </p>
+
+      <p>
+        <strong>Useful outputs:</strong>
+        predicted cluster locations, cluster types such as NRPS, PKS, RiPP, or
+        terpene clusters, gene organization, similar known clusters, and
+        predicted product information.
+      </p>
+
+      <p>
+        <strong>Questions to ask:</strong>
+        How many biosynthetic regions were detected? Are any similar to known
+        clusters? Are the clusters complete or interrupted by contig breaks?
+      </p>
+
+      <p>
+        <strong>Important caution:</strong>
+        A predicted biosynthetic gene cluster does not prove that the compound
+        is produced. Expression conditions, mutations, missing genes, and
+        contig fragmentation may affect the result.
+      </p>
+    </div>
+  </div>
+
+  <div class="genome-tool-group">
+    <h3>Prophages and genomic islands</h3>
+
+    <div class="genome-tool-card">
+      <h4>
+        <a
+          href="https://phaster.ca/"
+          target="_blank"
+          rel="noopener noreferrer">
+          PHASTER
+        </a>
+      </h4>
+
+      <p>
+        PHASTER searches an assembled genome for sequences that resemble
+        bacteriophages and prophage regions. It can help identify viral DNA
+        integrated into the bacterial chromosome.
+      </p>
+
+      <p>
+        <strong>Useful outputs:</strong>
+        predicted prophage coordinates, phage-region scores, phage-related
+        genes, database matches, and classifications such as intact,
+        questionable, or incomplete.
+      </p>
+
+      <p>
+        <strong>Questions to ask:</strong>
+        Is the region classified as intact? Does it contain recognizable
+        phage-related genes? Is the region located on a contig that is long
+        enough to contain the complete prophage?
+      </p>
+
+      <p>
+        <strong>Important caution:</strong>
+        A prophage split across contigs may be classified as incomplete even if
+        the biological prophage is intact.
+      </p>
+    </div>
+
+    <div class="genome-tool-card">
+      <h4>
+        <a
+          href="https://www.pathogenomics.sfu.ca/islandviewer/"
+          target="_blank"
+          rel="noopener noreferrer">
+          IslandViewer
+        </a>
+      </h4>
+
+      <p>
+        IslandViewer predicts genomic islands, which are regions that may have
+        been acquired through horizontal gene transfer. It combines multiple
+        prediction approaches based on comparative genomics, sequence
+        composition, and mobility-associated features.
+      </p>
+
+      <p>
+        <strong>Useful outputs:</strong>
+        predicted genomic-island coordinates, interactive genome visualization,
+        associated genes, and possible overlap with resistance or virulence
+        genes.
+      </p>
+
+      <p>
+        <strong>Questions to ask:</strong>
+        How many islands were predicted? What genes occur inside them? Do any
+        islands overlap with AMR, virulence, secretion, or mobility genes?
+      </p>
+
+      <p>
+        <strong>Important caution:</strong>
+        Genomic-island predictions are not proof of horizontal transfer.
+        Draft assemblies and short contigs can create false positives or cause
+        real islands to be missed.
+      </p>
+    </div>
+  </div>
+
+  <div class="genome-tool-group">
+    <h3>CRISPR-Cas and bacterial defense systems</h3>
+
+    <div class="genome-tool-card">
+      <h4>
+        <a
+          href="https://crisprcas.i2bc.paris-saclay.fr/"
+          target="_blank"
+          rel="noopener noreferrer">
+          CRISPRCasFinder
+        </a>
+      </h4>
+
+      <p>
+        CRISPRCasFinder searches nucleotide sequences for CRISPR arrays,
+        including repeated sequences and spacers, and searches for nearby or
+        associated Cas genes.
+      </p>
+
+      <p>
+        <strong>Useful outputs:</strong>
+        CRISPR-array locations, repeat sequences, spacer sequences, evidence
+        levels, Cas genes, and possible CRISPR-Cas system organization.
+      </p>
+
+      <p>
+        <strong>Questions to ask:</strong>
+        How many CRISPR arrays were detected? How many spacers do they contain?
+        Are Cas genes present nearby, and does the organization suggest a
+        potentially complete system?
+      </p>
+
+      <p>
+        <strong>Important caution:</strong>
+        Failure to detect a complete CRISPR-Cas system may reflect an incomplete
+        or fragmented assembly. Detection also does not prove that the system is
+        active.
+      </p>
+    </div>
+  </div>
+
+  <div class="genome-caution">
+    <p>
+      <strong>Interpret all predictions in context.</strong>
+      Before drawing conclusions, consider assembly completeness, contamination,
+      contig fragmentation, gene coverage, database version, identity and
+      coverage thresholds, and whether multiple tools support the same result.
+    </p>
+
+    <p>
+      For any result you may publish, record the input file, filtering cutoff,
+      tool version, database version, parameters, date of analysis, and the
+      complete output file or result URL.
+    </p>
+  </div>
+
+  <p class="back-to-contents">
+    <a href="#contents">Back to contents</a>
+  </p>
+</section>
+  
   <footer>
     <p>ASMCUE 2026 Galaxy Workshop</p>
   </footer>

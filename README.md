@@ -7,20 +7,4 @@ Welcome to the Genome Assembly and Annotation workshop! I hope you find this mat
 3) Select "Import History" to import the output files into your Galaxy history
 
 # Step by Step Tutorial
-## Getting the reads into Galaxy
-Short-read, Illumina sequencing files should be demultiplexed (one set of files for each sample submitted) with paired-end files having R1 and R2 in the file name. If this is what you've got, you're ready to upload. 
-
-
-
-https://github.com/user-attachments/assets/b3e283d5-52da-4301-8df8-e3f261b20ec2
-
-
-
-Once uploaded, you'll want to select both reads, and "Auto Build List" to create a file containing both forward and reverse reads.
-
-
-
-https://github.com/user-attachments/assets/b6f93635-f6af-44eb-be67-9f5b5005921c
-
-## Quality Assessment and Quality Control
-Now that your reads are in Galaxy, you can use the FASTQC tool to investigate the overall quality of your sequencing reads.
+Please visit https://tvanlaar.github.io/ASMCUE2026/ for a step-by-step tutorial from upload to annotation complete with short videos.
